@@ -1,5 +1,5 @@
 {
-    description = "A Nix & Home-manager configuration for 3 computers";
+    description = "A Nix centralized for Personnal use";
 
     inputs = {
         # NixPkgs
@@ -24,23 +24,11 @@
         in {
             nixosConfigurations = {
                 # Configurations
-                nixos-work = nixpkgs.lib.nixosSystem {
+                roole-nixos-laptop = nixpkgs.lib.nixosSystem {
                     system = settings.system;
                     specialArgs = { inherit inputs; inherit settings; };
-                    modules = [ ./configurations/nixos-work.nix ./configurations ];
+                    modules = [ ./configurations/nixos.nix ./configurations ];
                 };
-
-                nixos-desktop = nixpkgs.lib.nixosSystem {
-                    specialArgs = { inherit inputs; inherit settings; };
-                    system = settings.system;
-                    modules = [ ./configurations/nixos-desktop.nix ./configurations ];
-                };
-
-                nixos-laptop = nixpkgs.lib.nixosSystem {
-                    specialArgs = { inherit inputs; inherit settings; };
-                    system = settings.system;
-                    modules = [ ./configurations/nixos-laptop.nix ./configurations ];
-                };
-            };
+           };
         };
 }

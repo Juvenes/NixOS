@@ -8,6 +8,7 @@
     };
 
     networking = {
+
         wireless.iwd.enable = lib.mkDefault true;
         networkmanager.wifi.backend = "iwd";
         nameservers = [ "1.1.1.1" "9.9.9.9" ]; # Cloudflare DNS
@@ -64,5 +65,5 @@
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     # WARNING Don't change when updating, only change inputs
-    system.stateVersion = "24.11"; # Did you read the comment?
+    system.stateVersion = "25.11"; # Did you read the comment?
 }

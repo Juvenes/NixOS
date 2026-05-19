@@ -6,10 +6,7 @@
 
     environment.systemPackages = with pkgs; [
         wget
-        samba
-        libnotify
         killall
-        pfetch-rs
         ntfs3g
         lsof
         usbutils
@@ -30,8 +27,6 @@
         ./bluetooth.nix
         ./pipewire
         ./printer.nix
-        ./kde-connect.nix
-        ./wireguard.nix
-        ./virtualbox.nix
+        ./tailscale.nix
     ];
 }

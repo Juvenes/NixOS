@@ -4,10 +4,9 @@
     imports = [
         ./hardware/work-hardware-configuration.nix
         ./packages/system/fingerprint.nix
-        ./packages/system/nfc.nix
     ];
 
-    networking.hostName = "nixos-work";
+    networking.hostName = "roole-nixos-laptop";
     boot.kernelParams = [ "iommu=soft" ];
 
     environment.systemPackages = [

@@ -1,9 +1,9 @@
 {
-    username = "mat";
+    username = "roole";
     system = "x86_64-linux";
     flake-directory = "~/.dotfiles";
 
-    # Github
+    # Github @TODO
     gh-username = null;
     gh-email = null;
 

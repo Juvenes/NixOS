@@ -46,12 +46,6 @@
             modules-center = ["bluetooth" "clock" "custom/microphone"];
             modules-right = ["wireplumber" "temperature" "memory" "disk" "cpu" "network" "battery"];
 
-            # Modules
-            "custom/microphone" = {
-                interval = 3;
-                exec = "wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q 'MUTED' && echo ''";
-                on-click = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-            };
 
             wireplumber = {
                 format = "{volume}% ";
@@ -85,15 +79,6 @@
                 interval = 5;
                 format = "{}% ";
                 max-length = 10;
-                states = {
-                    critical = 85;
-                };
-            };
-
-            disk = {
-                interval = 120;
-                format = "{percentage_used}% ";
-                path = "/";
                 states = {
                     critical = 85;
                 };

@@ -11,13 +11,14 @@
         sharedModules = [
             ./git.nix
             ./bash.nix
+            ./fish.nix
 	        ./nixvim.nix
-            ./firefox.nix
             ./programming.nix
+            ./lab.nix
             ./kitty.nix
-            ./pentest.nix
             ./gpg.nix
             ./ssh.nix
+            ./firefox.nix
             settings.theme
             {
                 home.stateVersion = "25.11";
@@ -27,7 +28,6 @@
                     vlc
                     feh
                     unstable.vesktop
-                    spotify
                     ungoogled-chromium
                     playerctl
                     brightnessctl

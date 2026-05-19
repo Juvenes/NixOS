@@ -1,10 +1,8 @@
 { hostname, ... }:
 
-let
-    host-config = if hostname == "nixos-desktop" then ./desktop else ./laptop;
-in {
+{
     imports = [
-        host-config
+        ./laptop
         ../wayland-utils.nix
         ./keybindings.nix
         ./visual.nix
@@ -17,10 +15,6 @@ in {
             env = [
                 "NIXOS_OZONE_WL,1"
             ];
-
-            # Allow tearing for steam games
-            general.allow_tearing = true;
-            windowrulev2 = "immediate, class:^steam_app\d+$";
 
             dwindle = {
                 pseudotile = true;

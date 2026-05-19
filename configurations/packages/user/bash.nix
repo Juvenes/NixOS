@@ -5,7 +5,6 @@
         enable = true;
         shellAliases = {
             la = "ls -lA";
-	        battery = "cat /sys/class/power_supply/BAT0/capacity";
             nixclean = "doas nix-collect-garbage -d";
             nixbuild = "doas nixos-rebuild switch --flake ${settings.flake-directory}";
             nixtest = "echo 'WARNING: This build is not persistent'; doas nixos-rebuild test --flake ${settings.flake-directory}";
