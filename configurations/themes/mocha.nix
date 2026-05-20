@@ -7,7 +7,7 @@
     ];
 
     stylix = {
-        image = ../packages/user/stylix/wallpapers/mocha.png;
+        image = ../packages/user/stylix/wallpapers/mocha.jpg;
         base16Scheme = ../packages/user/stylix/styles/mocha.yaml;
 
         opacity = {
