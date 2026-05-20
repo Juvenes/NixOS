@@ -6,13 +6,21 @@
         bind = [
             # Apps
             "$mod, Return, exec, kitty"
+            "$mod, T, exec, kitty"
             "$mod, Space, exec, wofi -GiIS drun"
+            "$mod, R, exec, wofi -GiIS drun"
+            "$mod, A, exec, firefox"
             "$mod, B, exec, firefox --private-window"
             "$mod + SHIFT, B, exec, firefox"
+            "$mod, U, exec, vesktop"
             "$mod + SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"
             ", Print, exec, grim - | wl-copy"
             "$mod, Escape, exit"
             "$mod, L, exec, hyprlock"
+
+            # Monitor layout swap (Arch parity)
+            ''$mod CTRL, Left,  exec, hyprctl keyword monitor "HDMI-A-1, preferred, 0x0, 1" && hyprctl keyword monitor "eDP-1, preferred, 1920x0, 1"''
+            ''$mod CTRL, Right, exec, hyprctl keyword monitor "eDP-1, preferred, 0x0, 1" && hyprctl keyword monitor "HDMI-A-1, preferred, 1920x0, 1"''
 
             # Replay
             "ALT, twosuperior, exec, replay-save"

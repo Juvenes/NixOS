@@ -35,6 +35,23 @@
                 font-weight: bold;
                 color: @base08;
             }
+
+            #custom-launcher,
+            #custom-cmd,
+            #custom-power {
+                padding: 0 12px;
+                margin: 4px 6px;
+                border-radius: 8px;
+                background-color: alpha(@base02, 0.6);
+                font-size: 16px;
+            }
+
+            #custom-launcher:hover,
+            #custom-cmd:hover,
+            #custom-power:hover {
+                background-color: @base0D;
+                color: @base00;
+            }
         '';
 
         settings.main = {
@@ -42,9 +59,27 @@
 
             # Bar
 
-            modules-left = [];
+            modules-left = ["custom/launcher" "custom/cmd"];
             modules-center = ["bluetooth" "clock" "custom/microphone"];
-            modules-right = ["wireplumber" "temperature" "memory" "disk" "cpu" "network" "battery"];
+            modules-right = ["wireplumber" "temperature" "memory" "disk" "cpu" "network" "battery" "custom/power"];
+
+            "custom/launcher" = {
+                format   = "";
+                tooltip  = false;
+                on-click = "wofi -GiIS drun";
+            };
+
+            "custom/cmd" = {
+                format         = "";
+                tooltip-format = "Run command";
+                on-click       = "wofi --show run";
+            };
+
+            "custom/power" = {
+                format   = "⏻";
+                tooltip  = false;
+                on-click = "wlogout";
+            };
 
 
             wireplumber = {

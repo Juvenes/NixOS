@@ -12,6 +12,7 @@
             ./git.nix
             ./bash.nix
             ./fish.nix
+            ./starship.nix
 	        ./nixvim.nix
             ./programming.nix
             ./lab.nix
@@ -36,6 +37,9 @@
                     dust
                     tree
                     jq
+                    eza
+                    wofi
+                    wlogout
                 ];
             }
         ];

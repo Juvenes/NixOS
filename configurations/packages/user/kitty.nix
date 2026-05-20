@@ -3,13 +3,20 @@
 {
     programs.kitty = {
         enable = true;
-        shellIntegration.enableBashIntegration = true;
+        shellIntegration.enableFishIntegration = true;
+
+        font = {
+            name = "JetBrains Mono Nerd Font";
+            size = 11;
+        };
 
         settings = {
             confirm_os_window_close = 0;
-            cursor_shape = "beam";
-            enable_audio_bell = false;
-            window_padding_width = 20;
+            cursor_shape            = "beam";
+            cursor_trail            = 1;
+            enable_audio_bell       = false;
+            window_padding_width    = 22;
+            shell                   = "fish";
         };
     };
 }

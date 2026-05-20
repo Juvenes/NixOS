@@ -4,7 +4,7 @@
     programs.waybar = {
         systemd.target = "hyprland-session.target";
         settings.main = {
-            modules-left = ["hyprland/workspaces"];
+            modules-left = ["custom/launcher" "custom/cmd" "hyprland/workspaces"];
 
             "hyprland/workspaces" = {
                 all-outputs = true;
