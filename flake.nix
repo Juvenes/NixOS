@@ -16,6 +16,12 @@
     
         # Stylix
         stylix.url = "github:danth/stylix/release-25.11";
+
+        # Illogical Impulse (end-4 dots-hyprland + QuickShell, packaged as a home-manager module)
+        illogical-flake = {
+            url = "github:soymou/illogical-flake";
+            inputs.nixpkgs.follows = "nixpkgs-unstable";
+        };
     };
 
     outputs = inputs@{ nixpkgs, ... }: 

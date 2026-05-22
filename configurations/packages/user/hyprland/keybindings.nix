@@ -9,7 +9,7 @@
             "$mod, T, exec, kitty"
             "$mod, Space, exec, wofi -GiIS drun"
             "$mod, R, exec, wofi -GiIS drun"
-            "$mod, A, exec, firefox"
+            "$mod, A, killactive,"
             "$mod, B, exec, firefox --private-window"
             "$mod + SHIFT, B, exec, firefox"
             "$mod, U, exec, vesktop"
