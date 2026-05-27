@@ -5,6 +5,11 @@
         enable = true;
         shellIntegration.enableFishIntegration = true;
 
+        font = {
+            name = "JetBrains Mono Nerd Font";
+            size = 11;
+        };
+
         settings = {
             confirm_os_window_close = 0;
             cursor_shape            = "beam";
