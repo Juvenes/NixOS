@@ -10,9 +10,13 @@
                 no_fade_in          = false;
             };
 
-            # `path = screenshot` blurs the live screen contents — that's the
-            # "blur of the screen" look. Bump blur_passes / blur_size for more.
-            background = [{
+            # Stylix's hyprlock target sets `background = { color; path = wallpaper }`
+            # and `input-field.*_color`. Home-manager's hyprlock module declares
+            # both options unique-no-merge, so we use lib.mkForce to win and
+            # write them in the same attrset shape stylix uses.
+            # `path = "screenshot"` is hyprlock's magic value: blur the live
+            # screen contents instead of using an image.
+            background = lib.mkForce {
                 monitor      = "";
                 path         = "screenshot";
                 blur_passes  = 4;
@@ -22,9 +26,9 @@
                 brightness   = 0.7;
                 vibrancy     = 0.2;
                 vibrancy_darkness = 0.0;
-            }];
+            };
 
-            input-field = [{
+            input-field = lib.mkForce {
                 monitor          = "";
                 size             = "300, 50";
                 outline_thickness = 2;
@@ -41,7 +45,7 @@
                 position         = "0, -120";
                 halign           = "center";
                 valign           = "center";
-            }];
+            };
 
             label = [
                 # Big clock, top-right.
