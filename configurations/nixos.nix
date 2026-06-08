@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, settings, ... }:
 
 {
     imports = [
@@ -6,7 +6,7 @@
         ./packages/system/fingerprint.nix
     ];
 
-    networking.hostName = "nixos-work";
+    networking.hostName = settings.hostname;
     boot.kernelParams = [ "iommu=soft" ];
 
     environment.systemPackages = [

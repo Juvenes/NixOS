@@ -1,5 +1,6 @@
 {
     username = "roole";
+    hostname = "roole-nixos-laptop";
     system = "x86_64-linux";
     flake-directory = "~/.dotfiles";
 

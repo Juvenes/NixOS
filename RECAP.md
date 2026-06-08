@@ -27,11 +27,9 @@ on Hyprland startup — so D5 will have an empty history until next login.
 - **First RSS fetch** is cold-network — the very first `qs-rss` call (hyprlock
   label or `$mod+M`) takes a few seconds while `feedparser` pulls every URL.
   Subsequent calls hit the 15-min cache.
-- **Hostname change** — was `roole-nixos-laptop`, now `nixos-work`. The
-  rebuild aliases (`nixbuild`, `nixtest`, `update`) all use `--flake
-  ~/.dotfiles` and pick up the new `nixosConfigurations.nixos-work` key
-  automatically. If you have any external configs referencing the old name
-  (Tailscale name, monitoring, SSH `Host` aliases), update those.
+- **Hostname** — hoisted into `settings.nix` (`hostname = "roole-nixos-laptop"`).
+  `flake.nix`, `nixos.nix`, and the `nixbuild`/`nixtest` aliases all read it
+  from there, so a future rename is a one-line edit + rebuild.
 - **Nix shells list** — hardcoded in
   `configurations/packages/user/quickshell/configs/bar/NixShells.qml` under
   the `shells:` array. Edit + rebuild to add languages/tools.

@@ -22,13 +22,10 @@
         let
             settings = import ./settings.nix;
         in {
-            nixosConfigurations = {
-                # Configurations
-                nixos-work = nixpkgs.lib.nixosSystem {
-                    system = settings.system;
-                    specialArgs = { inherit inputs; inherit settings; };
-                    modules = [ ./configurations/nixos.nix ./configurations ];
-                };
-           };
+            nixosConfigurations.${settings.hostname} = nixpkgs.lib.nixosSystem {
+                system = settings.system;
+                specialArgs = { inherit inputs; inherit settings; };
+                modules = [ ./configurations/nixos.nix ./configurations ];
+            };
         };
 }
