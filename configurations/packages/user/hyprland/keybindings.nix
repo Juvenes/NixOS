@@ -1,14 +1,22 @@
 { config, pkgs, ... }:
 
-{
+let
+    # Wrappers that adjust the value AND poke quickshell so the OSD
+    # widget pops up. `qs` ships with the quickshell package and is on
+    # PATH for the Hyprland session.
+    volUp    = pkgs.writeShellScript "vol-up"    ''wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+; qs ipc call osd showVolume'';
+    volDown  = pkgs.writeShellScript "vol-down"  ''wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; qs ipc call osd showVolume'';
+    volMute  = pkgs.writeShellScript "vol-mute"  ''wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; qs ipc call osd showVolume'';
+    micMute  = pkgs.writeShellScript "mic-mute"  ''wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; notify-send "Microphone" "Mute toggled"'';
+    brightUp = pkgs.writeShellScript "bright-up" ''brightnessctl set 5%+; qs ipc call osd showBrightness'';
+    brightDn = pkgs.writeShellScript "bright-dn" ''brightnessctl set 5%-; qs ipc call osd showBrightness'';
+in {
     wayland.windowManager.hyprland.settings = {
         "$mod" = "SUPER";
         bind = [
             # Apps
             "$mod, Return, exec, kitty"
             "$mod, T, exec, kitty"
-            "$mod, Space, exec, wofi -GiIS drun"
-            "$mod, R, exec, wofi -GiIS drun"
             "$mod, A, exec, firefox"
             "$mod, B, exec, firefox --private-window"
             "$mod + SHIFT, B, exec, firefox"
@@ -18,6 +26,15 @@
             "$mod, Escape, exit"
             "$mod, L, exec, hyprlock"
 
+            # Quickshell popups — see configs/bar/shell.qml GlobalShortcuts
+            "$mod, Space, global, quickshell:launcher"
+            "$mod, R,     global, quickshell:launcher"
+            "$mod, N,     global, quickshell:note"
+            "$mod, V,     global, quickshell:clipboard"
+            "$mod, X,     global, quickshell:nixshells"
+            "$mod, P,     global, quickshell:power"
+            "$mod, M,     global, quickshell:rss"
+
             # Monitor layout swap (Arch parity)
             ''$mod CTRL, Left,  exec, hyprctl keyword monitor "HDMI-A-1, preferred, 0x0, 1" && hyprctl keyword monitor "eDP-1, preferred, 1920x0, 1"''
             ''$mod CTRL, Right, exec, hyprctl keyword monitor "eDP-1, preferred, 0x0, 1" && hyprctl keyword monitor "HDMI-A-1, preferred, 1920x0, 1"''
@@ -25,12 +42,16 @@
             # Replay
             "ALT, twosuperior, exec, replay-save"
 
-            # Volume & Microphone controls
-            ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
-            ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-            ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-            ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-            "CTRL, XF86AudioMute, exec, notify-send 'Microphone' 'Mute toggled'; wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+            # Volume & Microphone controls (OSD-aware)
+            ", XF86AudioRaiseVolume, exec, ${volUp}"
+            ", XF86AudioLowerVolume, exec, ${volDown}"
+            ", XF86AudioMute,        exec, ${volMute}"
+            ", XF86AudioMicMute,     exec, ${micMute}"
+            "CTRL, XF86AudioMute,    exec, ${micMute}"
+
+            # Brightness controls (OSD-aware)
+            ", XF86MonBrightnessUp,   exec, ${brightUp}"
+            ", XF86MonBrightnessDown, exec, ${brightDn}"
 
             # Media control
             ", XF86AudioPlay, exec, playerctl play-pause"

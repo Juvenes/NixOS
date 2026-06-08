@@ -24,7 +24,7 @@
         in {
             nixosConfigurations = {
                 # Configurations
-                roole-nixos-laptop = nixpkgs.lib.nixosSystem {
+                nixos-work = nixpkgs.lib.nixosSystem {
                     system = settings.system;
                     specialArgs = { inherit inputs; inherit settings; };
                     modules = [ ./configurations/nixos.nix ./configurations ];

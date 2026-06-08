@@ -20,6 +20,7 @@
             ./gpg.nix
             ./ssh.nix
             ./firefox.nix
+            ./rss.nix
             settings.theme
             {
                 home.stateVersion = "25.11";
@@ -40,6 +41,8 @@
                     eza
                     wofi
                     wlogout
+                    cliphist  # quickshell clipboard history (D5)
+                    claude-code  # `claude` CLI
                 ];
             }
         ];

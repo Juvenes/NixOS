@@ -33,7 +33,12 @@
             };
 
             # TODO Find a clean way to fix hyprpaper service
-            exec = ["systemctl --user restart hyprpaper"];
+            exec = [
+                "systemctl --user restart hyprpaper"
+                # cliphist clipboard-history watcher, feeds the D5 popup
+                "wl-paste --type text --watch cliphist store"
+                "wl-paste --type image --watch cliphist store"
+            ];
         };
     };
 

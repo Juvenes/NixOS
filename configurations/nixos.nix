@@ -6,7 +6,7 @@
         ./packages/system/fingerprint.nix
     ];
 
-    networking.hostName = "roole-nixos-laptop";
+    networking.hostName = "nixos-work";
     boot.kernelParams = [ "iommu=soft" ];
 
     environment.systemPackages = [
