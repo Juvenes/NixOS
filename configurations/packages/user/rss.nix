@@ -17,6 +17,8 @@ let
             "E305"  # expected 2 blank lines after function
             "E221"  # multiple spaces before operator (we align = on shorts)
             "E231"  # missing whitespace after ','
+            "E272"  # multiple spaces before keyword (we align `or` chains)
+            "E401"  # multiple imports on one line
             "E501"  # line too long
             "W391"  # blank line at end of file
         ];
