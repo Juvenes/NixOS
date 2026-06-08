@@ -11,6 +11,15 @@ let
     # labels (and the reader popup) stay consistent across simultaneous calls.
     qs-rss = pkgs.writers.writePython3Bin "qs-rss" {
         libraries = [ pkgs.python313Packages.feedparser ];
+        # Inline scripts won't satisfy PEP8 spacing; skip the noisy checks.
+        flakeIgnore = [
+            "E302"  # expected 2 blank lines
+            "E305"  # expected 2 blank lines after function
+            "E221"  # multiple spaces before operator (we align = on shorts)
+            "E231"  # missing whitespace after ','
+            "E501"  # line too long
+            "W391"  # blank line at end of file
+        ];
     } ''
         import argparse, html, json, os, random, sys, time
         from pathlib import Path
